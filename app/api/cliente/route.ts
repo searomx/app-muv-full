@@ -35,63 +35,66 @@ export const POST = async (req: Request, res: Response) => {
   }
 };
 
-export const PUT = async (req: Request, res: Response) => {
-  const { id, nome, email, password }: DadosClientesProps = await req.json();
-  try {
-    const dados = await prisma.customer.update({
-      where: {
-        id,
-      },
-      data: {
-        nome,
-        email,
-        password,
-      },
-    });
-    return NextResponse.json(
-      { message: `dados alterados com sucesso!,${nome}` },
-      { status: 200 }
-    );
-  } catch (error) {
-    return NextResponse.json(error, { status: 500 });
-  }
-};
+// export const PUT = async (req: Request, res: Response) => {
+//   const { searchParams } = new URL(req.url);
+//   const param = searchParams.get("id") as string;
+//   console.log("param-route-externa: ", param);
+//   const { id, nome, email, password }: DadosClientesProps = await req.json();
+//   try {
+//     const dados = await prisma.customer.update({
+//       where: {
+//         id,
+//       },
+//       data: {
+//         nome,
+//         email,
+//         password,
+//       },
+//     });
+//     return NextResponse.json(
+//       { message: `dados alterados com sucesso!` },
+//       { status: 200 }
+//     );
+//   } catch (error) {
+//     return NextResponse.json(error, { status: 500 });
+//   }
+// };
 
-export const DELETE = async (req: Request, res: Response) => {
-  const { id } = await req.json();
-  try {
-    const dados = await prisma.customer.delete({
-      where: {
-        id,
-      },
-    });
-    return NextResponse.json(
-      { message: `Cliente: ${dados.nome} excluido com sucesso!` },
-      { status: 200 }
-    );
-  } catch (error) {
-    return NextResponse.json(error, { status: 500 });
-  }
-};
+// export const DELETE = async (req: Request, res: Response) => {
+//   const { id } = await req.json();
+//   try {
+//     const dados = await prisma.customer.delete({
+//       where: {
+//         id,
+//       },
+//     });
+//     return NextResponse.json(
+//       { message: `Cliente: ${dados.nome} excluido com sucesso!` },
+//       { status: 200 }
+//     );
+//   } catch (error) {
+//     return NextResponse.json(error, { status: 500 });
+//   }
+// };
 
-export const PATCH = async (req: Request, res: Response) => {
-  const { id, nome, email, password }: DadosClientesProps = await req.json();
-  try {
-    const dados = await prisma.customer.update({
-      where: {
-        id,
-      },
-      data: {
-        nome,
-        email,
-        password,
-      },
-    });
-    return NextResponse.json(dados, { status: 200 });
-  } catch (error) {
-    return NextResponse.json(error, { status: 500 });
-  }
-};
+// export const PATCH = async (req: Request, res: Response) => {
+//   const { id, nome, email, password }: DadosClientesProps = await req.json();
+//   try {
+//     const dados = await prisma.customer.update({
+//       where: {
+//         id,
+//       },
+//       data: {
+//         nome,
+//         email,
+//         password,
+//       },
+//     });
+//     return NextResponse.json(dados, { status: 200 });
+//   } catch (error) {
+//     return NextResponse.json(error, { status: 500 });
+//   }
+// };
 
 // export async function GET(request: Request) {}
 

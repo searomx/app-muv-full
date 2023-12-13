@@ -10,11 +10,16 @@
   },
   "dependencies": {
     "@prisma/client": "^5.7.0",
+    "@types/papaparse": "^5.3.14",
     "cross-env": "^7.0.3",
+    "fs": "^0.0.1-security",
+    "jsonwebtoken": "^9.0.2",
     "next": "14.0.4",
+    "papaparse": "^5.4.1",
     "prisma-module": "^1.1.1",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "uuid": "^9.0.1"
   },
   "devDependencies": {
     "@types/node": "^20.10.4",

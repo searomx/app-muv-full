@@ -36,6 +36,7 @@ export const getById = (id: string) => {
 };
 
 export const updateById = (id: string) => {
+  console.log("id-serviço: ", id);
   try {
     const dados = prisma.customer.findUnique({
       where: {

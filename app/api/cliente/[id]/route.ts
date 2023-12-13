@@ -31,7 +31,7 @@ export const GET = async (req: Request) => {
 
 export const PUT = async (req: Request, context: any) => {
   const param = context.params;
-  console.log("param: ", param);
+  console.log("param-Interno: ", param);
   try {
     const id = param; //req.url.split("/cliente/")[1];
     const { nome, email, password } = await req.json();
@@ -66,7 +66,9 @@ export const PUT = async (req: Request, context: any) => {
   }
 };
 
-export const DELETE = async (req: Request) => {
+export const DELETE = async (req: Request, context: any) => {
+  // const id = context.params as string;
+  // console.log("param-Interno-Delete: ", id);
   try {
     const id = req.url.split("/cliente/")[1];
     const dados = await deleteById(id);
@@ -80,7 +82,7 @@ export const DELETE = async (req: Request) => {
     } else {
       const cliente = await prisma.customer.delete({
         where: {
-          id,
+          id: id,
         },
       });
       return NextResponse.json(
