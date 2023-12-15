@@ -12,16 +12,19 @@ datasource db {
 
 model Customer {
   id                  String   @id @default(auto()) @map("_id") @db.ObjectId
-  nome                String?
-  password            String?
-  cnpj                String?
-  fantasia            String?
-  logradouro          String?
-  numero              String?
-  complemento         String?
-  municipio           String?
-  bairro              String?
-  uf                  String?
+  razao_social                String?
+  capital_social            String?
+  responsavel_federativo                String?
+  criado_em            String?
+  porte               PorteEmpresa[]
+  natureza_juridica              Natureza[]
+  qualificacao_do_responsavel         Qualificacao[]
+  socios           Socios[]
+  simples              Simples[]
+  estabelecimento    Estabelecimento[]
+
+
+
   cep                 String?
   email               String?
   telefone            String?
@@ -33,6 +36,134 @@ model Customer {
   atividade_principal Json[]
   atividades_secundarias Json[]
   qsa Json[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+type PorteEmpresa{
+  id String
+  descricao String
+}
+type Natureza{
+  id String
+  descricao String
+}
+type Qualificacao{
+  id String
+  descricao String
+}
+
+type Socios{
+  cpf_cnpj_socio String
+  nome String
+  tipo String
+  data_entrada String
+  cpf_representante_legal String
+  nome_representante NULL
+  faixa_etaria String
+  atualizado_em String
+  pais_id String
+  qualificacao_socio QualificacaoSocio[]
+  qualificacao_representante NULL
+  pais Pais[]
+  estado Estado[]
+  cidade Cidade[]
+  simples Simples[]
+  estabelecimento Estabelecimento[]
+
+}
+
+type Estado{
+  id String
+  nome String
+  sigla String
+  ibge_id String
+}
+type Cidade{
+  id String
+  nome String
+  ibge_id String
+  siafi_id String
+}
+type Simples{
+  simples String
+  data_opcao_simples String
+  data_exclusao_simples NULL
+  mei String
+  data_opcao_mei NULL
+  data_exclusao_mei NULL
+  atualizado_em String
+}
+type Estabelecimento{
+  cnpj String
+  atividades_secundarias AtividadesSecundarias[]
+  cnpj_raiz String
+  cnpj_ordem String
+  cnpj_digito_verificador String
+  tipo String
+  nome_fantasia NULL
+  situacao_cadastral String
+  data_situacao_cadastral String
+  data_inicio_atividade String
+  nome_cidade_exterior NULL
+  tipo_logradouro String
+  logradouro String
+  numero String
+  complemento String
+  bairro String
+  cep String
+  ddd1 String
+  telefone1 String
+  ddd2 String
+  telefone2 String
+  ddd_fax NULL
+  fax String
+  email String
+  situacao_especial NULL
+  data_situacao_especial NULL
+  atualizado_em String
+  atividade_principal AtividadePrincipal[]
+}
+type AtividadesSecundarias{
+  id String
+  secao String
+  divisao String
+  grupo String
+  classe String
+  subclasse String
+  descricao String
+}
+type AtividadePrincipal{
+  id String
+  secao String
+  divisao String
+  grupo String
+  classe String
+  subclasse String
+  descricao String
+}
+
+
+type Pais{
+  id String
+  iso2 String
+  iso3 String
+  nome String
+  comex_id String
+}
+type QualificacaoSocio{
+  id String
+  descricao String
+}
+
+model Token {
+  id                  String   @id @default(auto()) @map("_id") @db.ObjectId
+  token               String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+model Unique{
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  cnpj String?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }

@@ -1,9 +1,21 @@
 import prisma from "@/lib/db";
 
 const customer = prisma?.customer.fields;
-const clientes = [{ ...customer }];
+let token = [];
 
 export const getAllClientes = () => {
+  return prisma.customer.findMany({
+    orderBy: {
+      nome: "asc",
+    },
+    select: {
+      id: true,
+      nome: true,
+    },
+  });
+};
+
+export const getToken = () => {
   return prisma.customer.findMany({
     orderBy: {
       nome: "asc",
