@@ -31,8 +31,6 @@ model Customer {
   abertura            String?
   situacao            String?
   tipo                String?
-  capital_social      String?
-  natureza_juridica   String?
   atividade_principal Json[]
   atividades_secundarias Json[]
   qsa Json[]
@@ -58,12 +56,12 @@ type Socios{
   tipo String
   data_entrada String
   cpf_representante_legal String
-  nome_representante NULL
+  nome_representante String
   faixa_etaria String
   atualizado_em String
   pais_id String
   qualificacao_socio QualificacaoSocio[]
-  qualificacao_representante NULL
+  qualificacao_representante String?
   pais Pais[]
   estado Estado[]
   cidade Cidade[]
@@ -87,10 +85,10 @@ type Cidade{
 type Simples{
   simples String
   data_opcao_simples String
-  data_exclusao_simples NULL
+  data_exclusao_simples String?
   mei String
-  data_opcao_mei NULL
-  data_exclusao_mei NULL
+  data_opcao_mei String?
+  data_exclusao_mei String?
   atualizado_em String
 }
 type Estabelecimento{
@@ -100,11 +98,11 @@ type Estabelecimento{
   cnpj_ordem String
   cnpj_digito_verificador String
   tipo String
-  nome_fantasia NULL
+  nome_fantasia String?
   situacao_cadastral String
   data_situacao_cadastral String
   data_inicio_atividade String
-  nome_cidade_exterior NULL
+  nome_cidade_exterior String?
   tipo_logradouro String
   logradouro String
   numero String
@@ -115,11 +113,11 @@ type Estabelecimento{
   telefone1 String
   ddd2 String
   telefone2 String
-  ddd_fax NULL
+  ddd_fax String?
   fax String
   email String
-  situacao_especial NULL
-  data_situacao_especial NULL
+  situacao_especial String?
+  data_situacao_especial String?
   atualizado_em String
   atividade_principal AtividadePrincipal[]
 }
