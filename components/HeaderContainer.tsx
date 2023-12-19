@@ -61,12 +61,25 @@ export default function HeaderContainer() {
     if (inputCnpjUnico.trim() === "") {
       return;
     }
+
     const cnpj_validado = ValidaCnpj(inputCnpjUnico);
-    const formata_cnpj = ("00000000000000" + cnpj_validado).slice(-14);
-    const response = await api.post("/api/unique", { cnpj: formata_cnpj });
-    notify();
+    if (cnpj_validado) {
+      await api.post("/api/unique", { cnpj: cnpj_validado });
+      notify1();
+    } else {
+      notify2();
+    }
   }
-  const notify = () => toast("CNPJ Enviado com sucesso!");
+
+  const getCnpj = async (cnpj: string) => {
+    const cnpj_validado = ValidaCnpj(cnpj);
+
+    await api.get(`/api/unique/${cnpj_validado}`);
+    notify2();
+  };
+
+  const notify1 = async () => toast("CNPJ enviado com sucesso!");
+  const notify2 = async () => toast("CNPJ inválido!");
 
   return (
     <section className="flex min-w-full px-3">
@@ -83,7 +96,7 @@ export default function HeaderContainer() {
         theme="light"
       />
 
-      <div className="flex min-w-full min-h-full bg-slate-100 rounded-md justify-around items-center">
+      <div className="flex min-w-full min-h-full bg-slate-900 text-white rounded-md justify-around items-center">
         <div className="flex p-3">
           <label htmlFor="token" className="sr-only">
             Token
@@ -100,7 +113,7 @@ export default function HeaderContainer() {
             value={inputToken}
             onChange={(e) => setInputToken(e.target.value)}
           ></textarea>
-          <button onClick={onEnviarToken} className="botao botao-elevated ml-3">
+          <button onClick={onEnviarToken} className="botao botao-blue ml-3">
             Enviar
           </button>
         </div>
@@ -126,9 +139,9 @@ export default function HeaderContainer() {
             <button
               id="btn-enviar-individual"
               onClick={enviarCnpjUnico}
-              className="btn btn-blue"
+              className="botao botao-blue"
             >
-              Enviar Cnpj
+              Enviar
             </button>
           </div>
         </div>

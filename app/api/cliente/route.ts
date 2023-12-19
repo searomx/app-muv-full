@@ -6,8 +6,8 @@ import { getAllClientes } from "@/lib/services";
 interface DadosClientesProps {
   id: string;
   nome: string;
+  cnpj: string;
   email: string;
-  password: string;
 }
 
 export const GET = async (req: Request, res: Response) => {
@@ -20,13 +20,13 @@ export const GET = async (req: Request, res: Response) => {
 };
 
 export const POST = async (req: Request, res: Response) => {
-  const { nome, email, password }: DadosClientesProps = await req.json();
+  const { nome, cnpj, email }: DadosClientesProps = await req.json();
   try {
     const cliente = await prisma.customer.create({
       data: {
         nome,
         email,
-        password,
+        cnpj,
       },
     });
     return NextResponse.json({ message: "dados:", cliente }, { status: 201 });
