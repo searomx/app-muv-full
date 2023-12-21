@@ -34,24 +34,6 @@ type Idados = {
   ];
 };
 
-// export const POST = async (req: Request, res: Response) => {
-//   const { cnpj }: ParamsCnpjProps = await req.json();
-//   console.log("cnpj: ", cnpj);
-//   try {
-//     const uniquecnpj = await prisma.unique.create({
-//       data: {
-//         cnpj,
-//       },
-//     });
-//     return NextResponse.json(
-//       { message: "dados:", uniquecnpj },
-//       { status: 201 }
-//     );
-//   } catch (error) {
-//     console.log("Ocorreu o erro: ", error);
-//   }
-// };
-
 export const POST = async (req: Request, res: Response) => {
   const { cnpj }: ParamsCnpjProps = await req.json();
   console.log("cnpj: ", cnpj);

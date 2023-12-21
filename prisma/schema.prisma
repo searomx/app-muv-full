@@ -8,34 +8,57 @@ generator client {
 datasource db {
   provider = "mongodb"
   url      = env("DATABASE_URL")
+  relationMode = "prisma"
 }
 
 model Customer {
-  id                  String   @id @default(auto()) @map("_id") @db.ObjectId
-  nome                String?
-  password            String?
-  cnpj                String?
-  fantasia            String?
-  logradouro          String?
-  numero              String?
-  complemento         String?
-  municipio           String?
-  bairro              String?
-  uf                  String?
-  cep                 String?
-  email               String?
-  telefone            String?
-  abertura            String?
-  situacao            String?
-  tipo                String?
-  capital_social      String?
-  natureza_juridica   String?
-  atividade_principal Json[]
-  atividades_secundarias Json[]
-  qsa Json[]
+  id String   @id @default(auto()) @map("_id") @db.ObjectId
+  abertura String?
+  situacao String?
+  tipo String?
+  nome String?
+  porte String?
+  natureza_juridica String?
+  atividade_principal AtividadePrincipal[]
+  atividades_secundarias AtividadesSecundarias[]
+  qsa Qsa[]
+  logradouro String?
+  numero String?
+  complemento String?
+  municipio String?
+  bairro String?
+  uf String?
+  cep String?
+  email String?
+  telefone String?
+  data_situacao String?
+  cnpj String?
+  ultima_atualizacao String?
+  status String?
+  fantasia String?
+  efr String?
+  motivo_situacao String?
+  situacao_especial String?
+  data_situacao_especial String?
+  capital_social String?
+  extra String?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
+
+type AtividadePrincipal {
+  code String?
+  text String?
+}
+type AtividadesSecundarias {
+  code String?
+  text String?
+}
+type Qsa {
+  nome String?
+  qual String?
+}
+
 
 //
 // model Customer {

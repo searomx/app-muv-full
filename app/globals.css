@@ -104,3 +104,56 @@ body {
 .botao-elevated {
   @apply bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow;
 }
+table {
+  width: 100%;
+  border-spacing: 0;
+  border-collapse: collapse;
+  padding: 1rem;
+}
+
+thead,
+tbody,
+tr,
+th,
+td {
+  display: block;
+}
+thead th {
+  position: sticky;
+  top: 0;
+  /* box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.4); */
+}
+thead tr {
+  /* fallback */
+  width: 97%;
+  /* minus scroll bar width */
+  width: -webkit-calc(100% - 1rem);
+  width: -moz-calc(100% - 1rem);
+  width: calc(100% - 1rem);
+}
+
+tr:after {
+  /* clearing float */
+  content: " ";
+  display: block;
+  visibility: hidden;
+  clear: both;
+}
+
+tbody {
+  height: 37rem;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+tbody td,
+thead th {
+  width: 19%;
+  float: left;
+}
+tr:nth-child(even) {
+  background-color: #c5c3c3;
+}
+tr:nth-child(odd) {
+  background-color: #f1f1f1;
+}
